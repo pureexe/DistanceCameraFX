@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">กล้องวัดระยะทาง</string>
+    <string name="action_settings">การตั้งค่า</string>
+    <string name="hello_world">Hello world!</string>
+     <string name="cant_concamera">ไม่สามารถเชื่อมต่อกล้อง</string>
+    <string name="cant_concamera_msg">ไม่พบกล้องบนอุปกรณ์นี้ หรือ กล้องกำลังถูกใช้งานอยู่โดยแอพพลิเคชั่นอื่น</string>
+	<string name="cant_conacc">ไม่สามารถอ่านความเร่ง!</string>
+	<string name="cant_conacc_msg">ไม่พบชิ้นส่วนอ่านความเร่งบนอุปกรณ์นี้</string>
+	<string name="cant_conpres">ไม่สามารถอ่านค่าความกดอากาศ!</string>
+	<string name="cant_conpres_msg">ไม่พบชิ้นส่วนอ่านความกดอากาศบนอุปกรณ์นี้</string>
+	<string name="set_mode">ระบุสิ่งที่จะหา</string>
+	<string name="set_high">กำหนดความสูง</string>
+	<string name="set_meter">กำหนดหน่วยที่ใช้</string>
+	<string name="set_about">เกี่ยวกับ</string>
+	<string name="distance">ระยะทาง</string>
+	<string name="wide">ความกว้าง</string>
+	<string name="high">ความสูง</string>
+	<string name="select">กรุณาเลือก</string>
+	<string name="manuel_input">กรอกด้วยตัวเอง</string>
+	<string name="manuel_input_msg">กรอกตัวเลขโดยใช้หน่วยความสูงเป็นเมตร</string>
+	<string name="use_pressure">ใช้ความดันบรรยากาศ </string>
+	<string name="active">กำลังใช้งาน</string>
+	<string name="deactive">ปิดการใช้งาน</string>
+	<string name="ok">ตกลง</string>
+	<string name="yes">ใช่</string>
+	<string name="no">ไม่ใช่</string>
+	<string name="cancle">ยกเลิก</string>
+	<string name="captureing">กำลังอ่านค่า&#8230;</string>
+	<string name="captureground">วางอุปกรณ์ไว้บนพื้นแล้วกดตกลง</string>
+	<string name="m">เมตร</string>
+	<string name="cm">เซนติเมตร</string>
+</resources>
