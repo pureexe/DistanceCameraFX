@@ -22,13 +22,12 @@ public class CameraMain extends Activity implements SensorEventListener {
 	private DataManager dm;
 	private DialogUtil util;
 	private CameraSetting camset;
-	private CameraProcessor campro;
+	private CameraDistance campro;
 	private CameraPreview mPreview;
 	private CameraSnapshot camsnap;
 	private Camera mCamera;
 	private SensorManager sensorManager;
 	private FrameLayout preview;
-	private Vector vexdistance;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,9 +35,8 @@ public class CameraMain extends Activity implements SensorEventListener {
 		util = new DialogUtil(this,getApplicationContext());/*** Load DialogUtil for use dialog***/
 		dm = new DataManager(this);/*** Load DataManager for save data ***/
 		camset=new CameraSetting(this);
-		campro=new CameraProcessor();
+		campro=new CameraDistance();
 		camsnap=new CameraSnapshot(this,camset,campro,util,dm);
-		vexdistance=new Vector();
 		/** Load Camera **/
         mCamera = CameraPreview.getCameraInstance();
         if(mCamera==null)

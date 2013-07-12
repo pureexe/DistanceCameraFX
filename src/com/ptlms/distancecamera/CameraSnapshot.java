@@ -9,7 +9,7 @@ import android.widget.TextView;
 public class CameraSnapshot {
 	private Activity activity;
 	private CameraSetting camset;
-	private CameraProcessor campro;
+	private CameraDistance campro;
 	private DialogUtil util;
 	
 	private DataManager dm;
@@ -18,7 +18,7 @@ public class CameraSnapshot {
 	private float distance1;
 	private float distance2;
 	private View btnLayout;
-	CameraSnapshot(Activity a,CameraSetting c,CameraProcessor p,DialogUtil ut,DataManager d)
+	CameraSnapshot(Activity a,CameraSetting c,CameraDistance p,DialogUtil ut,DataManager d)
 	{
 		activity=a;
 		camset=c;
