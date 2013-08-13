@@ -12,6 +12,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,11 +51,12 @@ public class CameraMain extends Activity implements SensorEventListener {
 	    {
 	    	util.errDialog(getString(R.string.cant_conacc),getString(R.string.cant_conacc_msg));
 	    }
-	    /** First time ask for use Pressure Sensor **/
+	    /** First time ask for use Pressure Sensor **
 	    if(sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE),SensorManager.SENSOR_DELAY_NORMAL)&&dm.getBool("AskForPressure"))
 	    {
 	    	util.errDialog(getString(R.string.cant_conpres),getString(R.string.cant_conpres_msg));
-	    }
+	    	dm.setBool("AskForPressure",false);			    
+	    }*/
 	    /**One time variable recheck **/
 	    camsnap.reset();
 	}
@@ -93,6 +95,7 @@ public class CameraMain extends Activity implements SensorEventListener {
 	}
 	public void onSnapshot(View v)
 	{
+		Log.d("CFX",">>>> onSnapshot method");
 		camsnap.snapshot();
 	//	vexdistance.add(new Float(campro.getDistance(camset.gethigh(),dm.getFloat("Accelometer"),(float)9.86)));
 		//util.toast("Distance = "+vexdistance.lastElement());	
