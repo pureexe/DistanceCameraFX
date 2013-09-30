@@ -33,14 +33,28 @@ public class CameraSnapshot {
 		if(dm.getInt("State")==0)
 			{
 			distance1=campro.getDistance(camset.gethigh(),dm.getFloat("Accelometer"),(float)9.86);	
-			UIdistance.setText(""+distance1+" "+camset.getStringUnit());
+			UIdistance.setText(activity.getString(R.string.distance)+" "+distance1+" "+camset.getStringUnit());
+			}
+		if(dm.getInt("State")==1)
+			{
+				if(dm.getInt("CameraFind")==1)
+					{
+						distance2=campro.getDistance(camset.gethigh(),dm.getFloat("Accelometer"),(float)9.86);
+						UIdistance.setText(activity.getString(R.string.distance)+" "+distance1+" "+camset.getStringUnit()+"\n"+activity.getString(R.string.high)+" = "+campro.getHigh(distance1, distance2, camset.gethigh(), (float)9.86)+camset.getStringUnit());
+					}
+				if(dm.getInt("CameraFind")==2)
+					{
+						distance2=campro.getDistance(camset.gethigh(),dm.getFloat("Accelometer"),(float)9.86);
+						UIdistance.setText(activity.getString(R.string.distance)+" "+distance1+" "+camset.getStringUnit()+"\n"+activity.getString(R.string.wide)+" = "+campro.getWide(distance1, distance2)+camset.getStringUnit());
+					}
 			}
 		}
+	
 	public void snapshot() {
 		if(dm.getInt("State")==0)
 		{
 			distance1=campro.getDistance(camset.gethigh(),dm.getFloat("Accelometer"),(float)9.86);
-			util.toast("Distance = "+distance1+camset.getStringUnit());
+			util.toast(activity.getString(R.string.distance)+" = "+distance1+camset.getStringUnit());
 			dm.setInt("State",1);
 			btnReset.setVisibility(View.VISIBLE);
 			btnLayout.setVisibility(View.VISIBLE);
@@ -51,17 +65,17 @@ public class CameraSnapshot {
 			if(dm.getInt("CameraFind")==0)
 			{
 				distance1=campro.getDistance(camset.gethigh(),dm.getFloat("Accelometer"),(float)9.86);
-				util.toast("Distance = "+distance1+camset.getStringUnit());
+				util.toast(activity.getString(R.string.distance)+" = "+distance1+camset.getStringUnit());
 			}
 			if(dm.getInt("CameraFind")==1)
 			{
 				distance2=campro.getDistance(camset.gethigh(),dm.getFloat("Accelometer"),(float)9.86);
-				util.toast("High = "+campro.getHigh(distance1, distance2, camset.gethigh(), (float)9.86)+camset.getStringUnit());
+				util.toast(activity.getString(R.string.high)+" = "+campro.getHigh(distance1, distance2, camset.gethigh(), (float)9.86)+camset.getStringUnit());
 			}
 			if(dm.getInt("CameraFind")==2)
 			{
 				distance2=campro.getDistance(camset.gethigh(),dm.getFloat("Accelometer"),(float)9.86);
-				util.toast("Wide = "+campro.getWide(distance1, distance2)+camset.getStringUnit());
+				util.toast(activity.getString(R.string.wide)+" = "+campro.getWide(distance1, distance2)+camset.getStringUnit());
 			}
 		}
 	}

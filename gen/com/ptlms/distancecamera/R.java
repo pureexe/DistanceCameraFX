@@ -20,10 +20,12 @@ public final class R {
          */
         public static final int activity_horizontal_margin=0x7f040000;
         public static final int activity_vertical_margin=0x7f040001;
+        public static final int text_medium=0x7f040002;
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
         public static final int reset=0x7f020001;
+        public static final int xdisplay=0x7f020002;
     }
     public static final class id {
         public static final int Struct=0x7f080000;
@@ -34,11 +36,9 @@ public final class R {
         public static final int buttonwide=0x7f080006;
         public static final int camera_preview=0x7f080001;
         public static final int imageView1=0x7f080003;
-        public static final int set_about=0x7f08000c;
+        public static final int imageView2=0x7f080008;
         public static final int set_high=0x7f080009;
         public static final int set_meter=0x7f08000a;
-        public static final int set_mode=0x7f080008;
-        public static final int show_vexdistance=0x7f08000b;
     }
     public static final class layout {
         public static final int activity_camera_main=0x7f030000;
@@ -57,18 +57,19 @@ public final class R {
         public static final int cant_concamera_msg=0x7f050004;
         public static final int cant_conpres=0x7f050007;
         public static final int cant_conpres_msg=0x7f050008;
-        public static final int captureground=0x7f05001b;
-        public static final int captureing=0x7f05001a;
-        public static final int cm=0x7f05001d;
+        public static final int captureground=0x7f05001c;
+        public static final int captureing=0x7f05001b;
+        public static final int cm=0x7f05001e;
         public static final int deactive=0x7f050015;
         public static final int distance=0x7f05000d;
         public static final int hello_world=0x7f050002;
         public static final int high=0x7f05000f;
-        public static final int m=0x7f05001c;
+        public static final int m=0x7f05001d;
         public static final int manuel_input=0x7f050011;
         public static final int manuel_input_msg=0x7f050012;
         public static final int no=0x7f050018;
         public static final int ok=0x7f050016;
+        public static final int reset=0x7f05001a;
         public static final int select=0x7f050010;
         public static final int set_about=0x7f05000c;
         public static final int set_high=0x7f05000a;

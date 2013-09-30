@@ -1,11 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
+   <!--  <item
         android:id="@+id/set_mode"
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/set_mode"/>
- 
+  -->
      <item
         android:id="@+id/set_high"
         android:orderInCategory="100"
@@ -16,16 +16,23 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/set_meter"/>
+     <!-- 
      <item
         android:id="@+id/show_vexdistance"
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="show_vexdistance"/>
+      <item
+        android:id="@+id/del_vexdistance"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="del_vexdistance"/>
+         
      <item
         android:id="@+id/set_about"
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/set_about"/>
-     
+     -->
 
 </menu>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">DistanceCamera</string>
+    <string name="app_name">DistanceCameraFx</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="cant_concamera">Can\'t connect camera!</string>
@@ -12,7 +12,7 @@
 	<string name="cant_conpres_msg">No pressure detect!</string>
 	<string name="set_mode">Set CameraMode</string>
 	<string name="set_high">Set High</string>
-	<string name="set_meter">Set หน่วย</string>
+	<string name="set_meter">Set Unit</string>
 	<string name="set_about">About</string>
 	<string name="distance">Distance</string>
 	<string name="wide">Wide</string>
@@ -27,6 +27,7 @@
 	<string name="yes">Yes</string>
 	<string name="no">No</string>
 	<string name="cancle">Cancle</string>
+	<string name="reset">Reset</string>
 	<string name="captureing">Captureing&#8230;</string>
 	<string name="captureground">Press OK when your device on the ground</string>
 	<string name="m">m</string>

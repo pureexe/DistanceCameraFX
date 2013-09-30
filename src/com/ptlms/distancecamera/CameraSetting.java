@@ -89,8 +89,8 @@ public class CameraSetting {
 		builder.setMessage(activity.getString(R.string.manuel_input_msg));
 		builder.setCancelable(false);
 		final EditText input = new EditText(activity);
-		input.setInputType(InputType.TYPE_CLASS_NUMBER);
-		input.setText("11");
+		//input.setInputType(InputType.TYPE_CLASS_NUMBER);
+		//input.setText("11");
 		builder.setView(input);
 		builder.setPositiveButton(activity.getString(R.string.ok), new DialogInterface.OnClickListener() {
 		
@@ -121,9 +121,9 @@ public class CameraSetting {
 	public String getStringUnit()
 	{
 		if(dm.getInt("Unit")==0)
-			return "meter";
+			return activity.getString(R.string.m);
 		if(dm.getInt("Unit")==1)
-			return "centimeter";
+			return activity.getString(R.string.cm);
 		return "Error Unit fault";
 	}
 	public float changeUnit(){

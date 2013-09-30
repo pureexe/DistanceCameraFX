@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">กล้องวัดระยะทาง</string>
+    <string name="app_name">กล้องวัดระยะ</string>
     <string name="action_settings">การตั้งค่า</string>
     <string name="hello_world">Hello world!</string>
      <string name="cant_concamera">ไม่สามารถเชื่อมต่อกล้อง</string>
@@ -27,6 +27,7 @@
 	<string name="yes">ใช่</string>
 	<string name="no">ไม่ใช่</string>
 	<string name="cancle">ยกเลิก</string>
+	<string name="reset">ล้างค่า</string>
 	<string name="captureing">กำลังอ่านค่า&#8230;</string>
 	<string name="captureground">วางอุปกรณ์ไว้บนพื้นแล้วกดตกลง</string>
 	<string name="m">เมตร</string>

@@ -2,7 +2,9 @@ package com.ptlms.distancecamera;
 /** Build On Windows8**/
 /** Use Nexus4 for test Device**/
 
+import java.util.ArrayList;
 import java.util.Vector;
+
 
 import android.hardware.Camera;
 import android.hardware.Sensor;
@@ -29,10 +31,12 @@ public class CameraMain extends Activity implements SensorEventListener {
 	private Camera mCamera;
 	private SensorManager sensorManager;
 	private FrameLayout preview;
+	private Vector vex_dist ;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_camera_main);
+		vex_dist= new Vector();
 		util = new DialogUtil(this,getApplicationContext());/*** Load DialogUtil for use dialog***/
 		dm = new DataManager(this);/*** Load DataManager for save data ***/
 		camset=new CameraSetting(this);
@@ -70,18 +74,22 @@ public class CameraMain extends Activity implements SensorEventListener {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
-	       case R.id.set_mode:
+	       /*case R.id.set_mode:
 	    	   		camset.selectmode();
-	            return true;
+	            return true;*/
 	       case R.id.set_high:
 	    	   		camset.set_high();
 	    	   		return true;
 	       case R.id.set_meter:
 	    	   		camset.set_meter();
 	    	   		return true;
-	       case R.id.show_vexdistance:
-	    	   		util.okDialog("List"," "+camset.gethigh()+" "+camset.changeUnit()+"\n");
+	      /* case R.id.show_vexdistance:
+	    	   		util.okDialog("List"," "+vex_dist+"\n");
 	    	   		return true;
+	       case R.id.del_vexdistance:
+   	   			vex_dist.clear();
+	    	   return true;*/
+	    	   		
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
@@ -97,7 +105,7 @@ public class CameraMain extends Activity implements SensorEventListener {
 	{
 		Log.d("CFX",">>>> onSnapshot method");
 		camsnap.snapshot();
-	//	vexdistance.add(new Float(campro.getDistance(camset.gethigh(),dm.getFloat("Accelometer"),(float)9.86)));
+		vex_dist.add(new Float(campro.getDistance(camset.gethigh(),dm.getFloat("Accelometer"),(float)9.86)));
 		//util.toast("Distance = "+vexdistance.lastElement());	
 		//util.toast(""+campro.getDistance(dm.getFloat("High"),dm.getFloat("Accelometer"),(float)9.86)+" "+unit);
 	}
