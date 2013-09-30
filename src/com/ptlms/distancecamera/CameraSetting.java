@@ -1,10 +1,12 @@
 package com.ptlms.distancecamera;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.text.InputType;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -104,6 +106,18 @@ public class CameraSetting {
 	}
 	public void pressure_capture()
 	{
+		if(dm.getBool("hasPressure")==false)
+		{
+			AlertDialog.Builder	builder = new AlertDialog.Builder(activity);
+			builder.setTitle(activity.getString(R.string.cant_conpres)).setMessage(activity.getString(R.string.cant_conpres_msg));
+			builder.setPositiveButton(activity.getString(R.string.ok),new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int whichButton) {
+						
+					}
+				});
+			builder.show();
+		}
+		else{
 		dm.setBool("UsePressure",true);
 		AlertDialog.Builder	builder = new AlertDialog.Builder(activity);
 		builder.setTitle(activity.getString(R.string.captureing)).setMessage(activity.getString(R.string.captureground));
@@ -113,6 +127,7 @@ public class CameraSetting {
 				}
 			});
 		builder.show();
+		}
 	}
 //	public int getmode()
 //	{
@@ -133,9 +148,10 @@ public class CameraSetting {
 			return (float) 100.0;
 		return (float)1.0;
 	}
+	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	public float gethigh()
 	{
-		if(dm.getBool("UsePressure"))
+		if(Build.VERSION.SDK_INT > 4 && dm.getBool("UsePressure"))
 			return SensorManager.getAltitude(dm.getFloat("PressureGround"), dm.getFloat("Pressure"))*changeUnit();
 		else
 			return dm.getFloat("High")*changeUnit();

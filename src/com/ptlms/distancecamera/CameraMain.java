@@ -55,6 +55,15 @@ public class CameraMain extends Activity implements SensorEventListener {
 	    {
 	    	util.errDialog(getString(R.string.cant_conacc),getString(R.string.cant_conacc_msg));
 	    }
+	    if(!sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE),SensorManager.SENSOR_DELAY_NORMAL))
+	    {
+	    	dm.setBool("hasPressure", false);
+	    }
+	    else
+	    {
+	    	dm.setBool("hasPressure", true);
+	    }
+	    	
 	    /** First time ask for use Pressure Sensor **
 	    if(sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE),SensorManager.SENSOR_DELAY_NORMAL)&&dm.getBool("AskForPressure"))
 	    {
