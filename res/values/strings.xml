@@ -19,7 +19,7 @@
 	<string name="high">High</string>
 	<string name="select">Please Select</string>
 	<string name="manuel_input">Manuel Input</string>
-	<string name="manuel_input_msg">Enter number in meter</string>
+	<string name="manuel_input_msg">Enter number in </string>
 	<string name="use_pressure">Use Pressure</string>
 	<string name="active">Active</string>
 	<string name="deactive">Deactive</string>
@@ -32,5 +32,8 @@
 	<string name="captureground">Press OK when your device on the ground</string>
 	<string name="m">m</string>
 	<string name="cm">cm</string>
-	
+	<string name="inch">inch</string>
+	<string name="feet">feet</string>
+	<string name="yard">yard</string>	
+	<string name="fail_is_not_number">input is not a number!</string>
 </resources>

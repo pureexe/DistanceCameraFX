@@ -62,8 +62,11 @@ public final class R {
         public static final int cm=0x7f05001e;
         public static final int deactive=0x7f050015;
         public static final int distance=0x7f05000d;
+        public static final int fail_is_not_number=0x7f050022;
+        public static final int feet=0x7f050020;
         public static final int hello_world=0x7f050002;
         public static final int high=0x7f05000f;
+        public static final int inch=0x7f05001f;
         public static final int m=0x7f05001d;
         public static final int manuel_input=0x7f050011;
         public static final int manuel_input_msg=0x7f050012;
@@ -77,6 +80,7 @@ public final class R {
         public static final int set_mode=0x7f050009;
         public static final int use_pressure=0x7f050013;
         public static final int wide=0x7f05000e;
+        public static final int yard=0x7f050021;
         public static final int yes=0x7f050017;
     }
     public static final class style {
