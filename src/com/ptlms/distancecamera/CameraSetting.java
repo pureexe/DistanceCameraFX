@@ -182,7 +182,7 @@ public class CameraSetting {
 	public void set_meter() {
 		AlertDialog.Builder	builder = new AlertDialog.Builder(activity);
 		final CharSequence[] items = {activity.getString(R.string.m),activity.getString(R.string.cm),activity.getString(R.string.inch),activity.getString(R.string.feet),activity.getString(R.string.yard)};
-		builder.setTitle(activity.getString(R.string.set_mode));
+		builder.setTitle(activity.getString(R.string.set_meter));
 		builder.setItems(items, new DialogInterface.OnClickListener() {
 		    public void onClick(DialogInterface dialog, int choose) {
 		    		
