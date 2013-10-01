@@ -18,8 +18,8 @@
 	<string name="wide">ความกว้าง</string>
 	<string name="high">ความสูง</string>
 	<string name="select">กรุณาเลือก</string>
-	<string name="manuel_input">กรอกด้วยตัวเอง</string>
-	<string name="manuel_input_msg">กรอกตัวเลขโดยใช้หน่วยความสูงเป็น</string>
+	<string name="manuale_input">กรอกด้วยตัวเอง</string>
+	<string name="manuale_input_msg">กรอกตัวเลขโดยใช้หน่วยความสูงเป็น</string>
 	<string name="use_pressure">ใช้ความดันบรรยากาศ </string>
 	<string name="active">กำลังใช้งาน</string>
 	<string name="deactive">ปิดการใช้งาน</string>
@@ -36,4 +36,9 @@
 	<string name="feet">ฟุต</string>
 	<string name="yard">หลา</string>
 	<string name="fail_is_not_number">ขออภัยนั่นไม่ใช่ค่าตัวเลข</string>
+	<string name="manuale_zoom">ขยายภาพ</string>
+	<string name="manuale_zoom_msg">เลื่อนแถบ เพื่อขยายภาพ</string>
+	<string name="unsupport">ไม่รองรับ </string>
+	<string name="err_sdkver_a">ขออภัย ต้องการแอนดรอย </string>
+	<string name="err_sdkver_b">ขึ้นไป เพื่อใช้งานส่วนนี้</string>
 </resources>

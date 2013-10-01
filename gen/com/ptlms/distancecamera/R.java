@@ -30,13 +30,14 @@ public final class R {
     public static final class id {
         public static final int Struct=0x7f080000;
         public static final int UIdistance=0x7f080004;
-        public static final int buttonContainer=0x7f080005;
-        public static final int buttonhigh=0x7f080007;
+        public static final int buttonContainer=0x7f080006;
+        public static final int buttonhigh=0x7f080008;
         public static final int buttonreset=0x7f080002;
-        public static final int buttonwide=0x7f080006;
+        public static final int buttonwide=0x7f080007;
         public static final int camera_preview=0x7f080001;
         public static final int imageView1=0x7f080003;
-        public static final int imageView2=0x7f080008;
+        public static final int imageView2=0x7f080005;
+        public static final int manuale_zoom=0x7f08000b;
         public static final int set_high=0x7f080009;
         public static final int set_meter=0x7f08000a;
     }
@@ -62,14 +63,18 @@ public final class R {
         public static final int cm=0x7f05001e;
         public static final int deactive=0x7f050015;
         public static final int distance=0x7f05000d;
+        public static final int err_sdkver_a=0x7f050026;
+        public static final int err_sdkver_b=0x7f050027;
         public static final int fail_is_not_number=0x7f050022;
         public static final int feet=0x7f050020;
         public static final int hello_world=0x7f050002;
         public static final int high=0x7f05000f;
         public static final int inch=0x7f05001f;
         public static final int m=0x7f05001d;
-        public static final int manuel_input=0x7f050011;
-        public static final int manuel_input_msg=0x7f050012;
+        public static final int manuale_input=0x7f050011;
+        public static final int manuale_input_msg=0x7f050012;
+        public static final int manuale_zoom=0x7f050023;
+        public static final int manuale_zoom_msg=0x7f050024;
         public static final int no=0x7f050018;
         public static final int ok=0x7f050016;
         public static final int reset=0x7f05001a;
@@ -78,6 +83,7 @@ public final class R {
         public static final int set_high=0x7f05000a;
         public static final int set_meter=0x7f05000b;
         public static final int set_mode=0x7f050009;
+        public static final int unsupport=0x7f050025;
         public static final int use_pressure=0x7f050013;
         public static final int wide=0x7f05000e;
         public static final int yard=0x7f050021;

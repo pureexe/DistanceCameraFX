@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CameraMain" >
+
 <!--     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -36,39 +37,15 @@
             android:onClick="onSnapshot"
             android:src="@drawable/ic_launcher"
             android:contentDescription="Snapshot" />
+
            <TextView
-        android:id="@+id/UIdistance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"
-        android:textAppearance="?android:attr/textAppearanceMedium" 
-        android:layout_gravity="bottom|right"/>
-
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:gravity="bottom|left"
-               android:id="@+id/buttonContainer"
-                >
-
-               <Button
-                   android:id="@+id/buttonwide"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:onClick="clickWide"
-                   android:text="@+string/wide" />
-
-            
-
-               <Button
-                   android:id="@+id/buttonhigh"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:gravity="center"
-                   android:onClick="clickHigh"
-                   android:text="@+string/high" />
-
-           </LinearLayout>
+               android:id="@+id/UIdistance"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="bottom|right"
+               android:text="A"
+               android:textAppearance="?android:attr/textAppearanceMedium"
+               android:textColor="@android:color/white" />
 
            <ImageView
                android:id="@+id/imageView2"
@@ -77,8 +54,32 @@
                android:layout_gravity="center"
                android:src="@drawable/xdisplay" />
 
+
     </FrameLayout>
 
+       
+           <LinearLayout
+               android:id="@+id/buttonContainer"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_alignParentLeft="true"
+               android:layout_alignParentTop="true"
+               android:gravity="bottom|left" >
 
+               <Button
+                   android:id="@+id/buttonwide"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:onClick="clickWide"
+                   android:text="@+string/wide" />
+
+               <Button
+                   android:id="@+id/buttonhigh"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:gravity="center"
+                   android:onClick="clickHigh"
+                   android:text="@+string/high" />
+           </LinearLayout>
 
 </RelativeLayout>

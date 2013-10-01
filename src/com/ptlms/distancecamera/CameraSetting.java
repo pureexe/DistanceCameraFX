@@ -5,11 +5,13 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
+import android.hardware.Camera;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.text.InputType;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 public class CameraSetting {
@@ -21,10 +23,13 @@ public class CameraSetting {
 	private Float High;
 	private DataManager dm;
 	private boolean usepressure;
-	public CameraSetting(Activity a)
+	private Camera camera;
+	public CameraSetting(Activity a,Camera b)
 	{
 		activity=a;
+		camera=b;
 		dm = new DataManager(a);
+
 		
 	}
 	public void selectmode() {
@@ -70,12 +75,12 @@ public class CameraSetting {
 				b=" : "+activity.getString(R.string.active);
 		else
 			    a=" : "+activity.getString(R.string.active);
-			final CharSequence[] items = {activity.getString(R.string.manuel_input)+a,activity.getString(R.string.use_pressure)+b};
+			final CharSequence[] items = {activity.getString(R.string.manuale_input)+a,activity.getString(R.string.use_pressure)+b};
 		builder.setTitle(activity.getString(R.string.set_high));
 		builder.setItems(items, new DialogInterface.OnClickListener() {
 		    public void onClick(DialogInterface dialog, int choose) {
 		    		if(choose==0)
-		    			manuel_high();
+		    			manuale_high();
 		    		if(choose==1)
 		    				pressure_capture();
 		    }
@@ -85,12 +90,12 @@ public class CameraSetting {
 		alert.show();
 	}
 
-	public void manuel_high()
+	public void manuale_high()
 	{
 		dm.setBool("UsePressure",false);
 		AlertDialog.Builder	builder = new AlertDialog.Builder(activity);
-		builder.setTitle(activity.getString(R.string.manuel_input));
-		builder.setMessage(activity.getString(R.string.manuel_input_msg)+getStringUnit());
+		builder.setTitle(activity.getString(R.string.manuale_input));
+		builder.setMessage(activity.getString(R.string.manuale_input_msg)+getStringUnit());
 		builder.setCancelable(false);
 		final EditText input = new EditText(activity);
 		//input.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -115,6 +120,45 @@ public class CameraSetting {
 		});
 		builder.show();
 	}
+	@TargetApi(Build.VERSION_CODES.FROYO)
+	public void manuale_zoom()
+	{
+		if(Build.VERSION.SDK_INT<8)
+		{
+			AlertDialog.Builder	builder = new AlertDialog.Builder(activity);
+			builder.setTitle(activity.getString(R.string.unsupport)).setMessage(activity.getString(R.string.err_sdkver_a)+" 2.2 "+activity.getString(R.string.err_sdkver_b));
+			builder.setPositiveButton(activity.getString(R.string.ok),new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int whichButton) {
+						
+					}
+				});
+			builder.show();
+		}
+		else{
+		AlertDialog.Builder	builder = new AlertDialog.Builder(activity);
+		builder.setTitle(activity.getString(R.string.manuale_zoom));
+		builder.setMessage(activity.getString(R.string.manuale_zoom_msg));
+		builder.setCancelable(false);
+		final SeekBar input = new SeekBar(activity);
+		final Camera.Parameters params = camera.getParameters();
+		input.setProgress(params.getZoom());
+		input.setMax(params.getMaxZoom());
+		builder.setView(input);
+		builder.setPositiveButton(activity.getString(R.string.ok), new DialogInterface.OnClickListener() {	
+		public void onClick(DialogInterface dialog, int whichButton) {
+				try{
+					params.setZoom(input.getProgress());
+					camera.setParameters(params);
+				}
+				catch(Exception e)
+				{
+					Toast.makeText(activity,"zoom faile type = "+e, Toast.LENGTH_LONG).show();
+				}
+			}
+		});
+		builder.show();
+		}
+		}
 	public void pressure_capture()
 	{
 		if(dm.getBool("hasPressure")==false)
@@ -202,5 +246,6 @@ public class CameraSetting {
 		AlertDialog alert = builder.create();
 		alert.show();
 	}
+	
 	
 }

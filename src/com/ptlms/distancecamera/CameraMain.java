@@ -36,18 +36,19 @@ public class CameraMain extends Activity implements SensorEventListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_camera_main);
-		vex_dist= new Vector();
-		util = new DialogUtil(this,getApplicationContext());/*** Load DialogUtil for use dialog***/
-		dm = new DataManager(this);/*** Load DataManager for save data ***/
-		camset=new CameraSetting(this);
-		campro=new CameraDistance();
-		camsnap=new CameraSnapshot(this,camset,campro,util,dm);
 		/** Load Camera **/
         mCamera = CameraPreview.getCameraInstance();
         if(mCamera==null)
         	util.errDialog(getString(R.string.cant_concamera),getString(R.string.cant_concamera_msg));	
         mPreview = new CameraPreview(this, mCamera);
         preview = (FrameLayout) findViewById(R.id.camera_preview);
+        /** Class init... **/
+    	vex_dist= new Vector();
+		util = new DialogUtil(this,getApplicationContext());/*** Load DialogUtil for use dialog***/
+		dm = new DataManager(this);/*** Load DataManager for save data ***/
+		camset=new CameraSetting(this,mCamera);
+		campro=new CameraDistance();
+		camsnap=new CameraSnapshot(this,camset,campro,util,dm);
         preview.addView(mPreview);
         /** Checking Sensor **/
         sensorManager=(SensorManager)getSystemService(SENSOR_SERVICE);
@@ -91,6 +92,9 @@ public class CameraMain extends Activity implements SensorEventListener {
 	    	   		return true;
 	       case R.id.set_meter:
 	    	   		camset.set_meter();
+	    	   		return true;
+	       case R.id.manuale_zoom:
+	    	   		camset.manuale_zoom();
 	    	   		return true;
 	      /* case R.id.show_vexdistance:
 	    	   		util.okDialog("List"," "+vex_dist+"\n");
