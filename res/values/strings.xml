@@ -41,4 +41,24 @@
 	<string name="unsupport">Unsupport </string>
 	<string name="err_sdkver_a">Unsupport, need android version</string>
 	<string name="err_sdkver_b">or higher to use this function</string>
+	<string name="app_information">More Information</string>
+	<string name="how_to_use">How to use?</string>
+	<string name="sensor_information">Sensor Information</string>
+	<string name="about_dev">about developer</string>
+	<string name="license">license</string>
+	<string name="sensor_acc">Accelerometer</string>
+	<string name="sensor_pressure">Pressure sensor</string>
+	<string name="sensor_name">Sensor name : </string>
+	<string name="sensor_vendor">Vendor : </string>
+	<string name="sensor_max_range">Max Range : </string>
+	<string name="sensor_version">Version : </string>
+	<string name="sensor_power">Power : </string>
+	<string name="sensor_Resolution_raw">Resolution(RAW) : </string>
+	<string name="sensor_Resolution">Resolution : </string>
+	<string name="degree">°</string>
+	<string name="m_s2">m/s²</string>
+	<string name="hpa">hPa</string>
+	<string name="amp">a</string>
+		
+	
 </resources>

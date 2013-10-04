@@ -41,4 +41,22 @@
 	<string name="unsupport">ไม่รองรับ </string>
 	<string name="err_sdkver_a">ขออภัย ต้องการแอนดรอย </string>
 	<string name="err_sdkver_b">ขึ้นไป เพื่อใช้งานส่วนนี้</string>
+	<string name="app_information">ข้อมูลทั่วไป</string>
+	<string name="how_to_use">วิธีการใช้งาน</string>
+	<string name="sensor_information">ข้อมูลของเซนเซอร์</string>
+	<string name="sensor_acc">เซนเซอร์ความเร่ง</string>
+	<string name="sensor_pressure">เซนเซอร์ความดันอากาศ</string>
+	<string name="about_dev">ผู้จัดทำ</string>
+	<string name="license">ใบอนุญาติการใช้งาน</string>
+	<string name="sensor_name">ชื่อ : </string>
+	<string name="sensor_vendor">บริษัท : </string>
+	<string name="sensor_max_range">ค่าสูงสุด : </string>
+	<string name="sensor_version">รุ่นที่ : </string>
+	<string name="sensor_power">กำลังไฟ : </string>
+	<string name="sensor_Resolution_raw">ความละเอียด(ดิบ) : </string>
+	<string name="sensor_Resolution">ความละเอียด : </string>
+	<string name="degree">°</string>
+	<string name="m_s2">m/s²</string>
+	<string name="hpa">hPa</string>
+	<string name="amp">a</string>
 </resources>

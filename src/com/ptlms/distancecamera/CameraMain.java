@@ -3,6 +3,7 @@ package com.ptlms.distancecamera;
 /** Use Nexus4 for test Device**/
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 
@@ -11,19 +12,23 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 public class CameraMain extends Activity implements SensorEventListener {
 	final boolean isDebug=true;
 	private DataManager dm;
-	private DialogUtil util;
 	private CameraSetting camset;
 	private CameraDistance campro;
 	private CameraPreview mPreview;
@@ -32,6 +37,8 @@ public class CameraMain extends Activity implements SensorEventListener {
 	private SensorManager sensorManager;
 	private FrameLayout preview;
 	private Vector vex_dist ;
+	private Builder alert;
+	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,22 +46,36 @@ public class CameraMain extends Activity implements SensorEventListener {
 		/** Load Camera **/
         mCamera = CameraPreview.getCameraInstance();
         if(mCamera==null)
-        	util.errDialog(getString(R.string.cant_concamera),getString(R.string.cant_concamera_msg));	
+        	{
+        		camset.err_concam();
+        	}
         mPreview = new CameraPreview(this, mCamera);
         preview = (FrameLayout) findViewById(R.id.camera_preview);
         /** Class init... **/
     	vex_dist= new Vector();
-		util = new DialogUtil(this,getApplicationContext());/*** Load DialogUtil for use dialog***/
 		dm = new DataManager(this);/*** Load DataManager for save data ***/
 		camset=new CameraSetting(this,mCamera);
 		campro=new CameraDistance();
-		camsnap=new CameraSnapshot(this,camset,campro,util,dm);
+		camsnap=new CameraSnapshot(this,camset,campro,dm);
         preview.addView(mPreview);
         /** Checking Sensor **/
         sensorManager=(SensorManager)getSystemService(SENSOR_SERVICE);
 	    if(!sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_NORMAL))
 	    {
-	    	util.errDialog(getString(R.string.cant_conacc),getString(R.string.cant_conacc_msg));
+	    	camset.err_conacc();
+	    }
+	    else
+	    {
+	    	// write sensor detail
+	    	Sensor s_detail = sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER).get(0);
+	    	dm.setString("s_acc_name", s_detail.getName());
+	    	dm.setString("s_acc_vender", s_detail.getVendor());
+	    	dm.setString("s_acc_maxrange",""+s_detail.getMaximumRange());
+	    	dm.setFloat("s_acc_resolution", s_detail.getResolution());
+	    	dm.setString("s_acc_version", ""+s_detail.getVersion());
+	    	dm.setString("s_acc_power",""+s_detail.getPower());
+	    	if(Build.VERSION.SDK_INT>=9)
+	    		dm.setString("s_acc_mindelay", ""+s_detail.getMinDelay());
 	    }
 	    if(!sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE),SensorManager.SENSOR_DELAY_NORMAL))
 	    {
@@ -63,6 +84,15 @@ public class CameraMain extends Activity implements SensorEventListener {
 	    else
 	    {
 	    	dm.setBool("hasPressure", true);
+	    	Sensor s2_detail = sensorManager.getSensorList(Sensor.TYPE_PRESSURE).get(0);
+	    	dm.setString("s_pres_name", s2_detail.getName());
+	    	dm.setString("s_pres_vendor", s2_detail.getVendor());
+	    	dm.setString("s_pres_maxrange",""+s2_detail.getMaximumRange());
+	    	dm.setFloat("s_pres_resolution", s2_detail.getResolution());
+	    	dm.setString("s_pres_version", ""+s2_detail.getVersion());
+	    	dm.setString("s_pres_power",""+s2_detail.getPower());
+	    	if(Build.VERSION.SDK_INT>=9)
+	    		dm.setString("s_pres_mindelay", ""+s2_detail.getMinDelay());
 	    }
 	    	
 	    /** First time ask for use Pressure Sensor **
@@ -102,7 +132,9 @@ public class CameraMain extends Activity implements SensorEventListener {
 	       case R.id.del_vexdistance:
    	   			vex_dist.clear();
 	    	   return true;*/
-	    	   		
+	       case R.id.app_information:
+	    	   	camset.app_information();
+	       		return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }

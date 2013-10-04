@@ -246,6 +246,111 @@ public class CameraSetting {
 		AlertDialog alert = builder.create();
 		alert.show();
 	}
+	public void app_information() {
+		final CharSequence[] items = {activity.getString(R.string.how_to_use),activity.getString(R.string.sensor_information),activity.getString(R.string.about_dev),activity.getString(R.string.license)};
+		new AlertDialog.Builder(activity).setTitle(R.string.app_information).setItems(items, new DialogInterface.OnClickListener(){
+			@Override
+			public void onClick(DialogInterface dialog, int choice) {
+				if(choice==0)
+					how_to_use();
+				if(choice==1)
+					sensor_information();
+				if(choice==2)
+					about_dev();
+				
+			}
+		}).create().show();
+		}
+	public void sensor_information() {
+		final CharSequence[] items = {activity.getString(R.string.sensor_acc),activity.getString(R.string.sensor_pressure)};
+		new AlertDialog.Builder(activity).setTitle(R.string.app_information).setItems(items, new DialogInterface.OnClickListener(){
+			@Override
+			public void onClick(DialogInterface dialog, int choice) {
+				if(choice==0)
+					sensor_acc_information();
+				if(choice==1)
+					if(Build.VERSION.SDK_INT>=9)
+						sensor_pres_information();
+					else
+						Toast.makeText(activity,activity.getString(R.string.err_sdkver_a)+" 2.3 "+activity.getString(R.string.err_sdkver_b),Toast.LENGTH_LONG).show();
+				
+			}
+		}).create().show();		
+	}
+	public void sensor_acc_information() {
+		String sensor_detail = "";
+		sensor_detail+=activity.getString(R.string.sensor_name)+" "+dm.getString("s_acc_name")+"\n"
+					+activity.getString(R.string.sensor_vendor)+" "+dm.getString("s_acc_vendor")+"\n"
+					+activity.getString(R.string.sensor_version)+" "+dm.getString("s_acc_version")+"\n"
+					+activity.getString(R.string.sensor_power)+" "+dm.getString("s_acc_power")+activity.getString(R.string.amp)+"\n"
+					+activity.getString(R.string.sensor_max_range)+" "+dm.getString("s_acc_maxrange")+activity.getString(R.string.m_s2)+"\n"
+					+activity.getString(R.string.sensor_Resolution_raw)+" "+dm.getFloat("s_acc_resolution")+activity.getString(R.string.m_s2)+"\n"
+					+activity.getString(R.string.sensor_Resolution)+" "+Math.toDegrees(Math.asin(dm.getFloat("s_acc_resolution")/9.86))+activity.getString(R.string.degree)+"\n";
+		new AlertDialog.Builder(activity)
+		.setTitle(activity.getString(R.string.sensor_information))
+		.setMessage(sensor_detail)
+		.setPositiveButton(activity.getString(R.string.ok),new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton)
+				{
+				}
+		}).show();
+	}
+	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
+	protected void sensor_pres_information() {
+		String sensor_detail = "";
+		sensor_detail+=activity.getString(R.string.sensor_name)+" "+dm.getString("s_pres_name")+"\n"
+					+activity.getString(R.string.sensor_vendor)+" "+dm.getString("s_pres_vendor")+"\n"
+					+activity.getString(R.string.sensor_version)+" "+dm.getString("s_pres_version")+"\n"
+					+activity.getString(R.string.sensor_power)+" "+dm.getString("s_pres_power")+activity.getString(R.string.amp)+"\n"
+					+activity.getString(R.string.sensor_max_range)+" "+dm.getString("s_pres_maxrange")+activity.getString(R.string.m_s2)+"\n"
+					+activity.getString(R.string.sensor_Resolution_raw)+" "+dm.getFloat("s_pres_resolution")+activity.getString(R.string.m_s2)+"\n"
+					+activity.getString(R.string.sensor_Resolution)+" "+SensorManager.getAltitude(1000+dm.getFloat("s_pres_resolution"),1000)+activity.getString(R.string.m)+"\n";
+		new AlertDialog.Builder(activity)
+		.setTitle(activity.getString(R.string.sensor_information))
+		.setMessage(sensor_detail)
+		.setPositiveButton(activity.getString(R.string.ok),new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton)
+				{
+				}
+		}).show();
+		
+	}
+	protected void about_dev() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	protected void how_to_use() {
+		// TODO Auto-generated method stub
+		
+	}
+	public void err_concam()
+	{
+		
+		new AlertDialog.Builder(activity)
+			.setTitle(activity.getString(R.string.cant_concamera))
+			.setMessage(activity.getString(R.string.cant_concamera_msg))
+			.setCancelable(false)
+			.setPositiveButton(activity.getString(R.string.ok),new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int whichButton)
+					{
+						activity.finish();
+					}
+			}).show();
+	}
+	public void err_conacc()
+	{
+    	new AlertDialog.Builder(activity)
+    		.setTitle(activity.getString(R.string.cant_conacc))
+    		.setMessage(activity.getString(R.string.cant_conacc_msg))
+    		.setCancelable(false)
+    		.setPositiveButton(activity.getString(R.string.ok),new DialogInterface.OnClickListener() {
+    			public void onClick(DialogInterface dialog, int whichButton)
+    				{
+    					activity.finish();
+    				}
+    		}).show();
+	}
 	
 	
 }
