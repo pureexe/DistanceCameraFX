@@ -71,7 +71,7 @@ public class CameraMain extends Activity implements SensorEventListener {
 	    	// write sensor detail
 	    	Sensor s_detail = sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER).get(0);
 	    	dm.setString("s_acc_name", s_detail.getName());
-	    	dm.setString("s_acc_vender", s_detail.getVendor());
+	    	dm.setString("s_acc_vendor", s_detail.getVendor());
 	    	dm.setString("s_acc_maxrange",""+s_detail.getMaximumRange());
 	    	dm.setFloat("s_acc_resolution", s_detail.getResolution());
 	    	dm.setString("s_acc_version", ""+s_detail.getVersion());
