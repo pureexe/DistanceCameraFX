@@ -30,7 +30,7 @@ public final class R {
     public static final class id {
         public static final int Struct=0x7f080000;
         public static final int UIdistance=0x7f080004;
-        public static final int app_information=0x7f08000f;
+        public static final int app_information=0x7f080010;
         public static final int buttonContainer=0x7f080006;
         public static final int buttonhigh=0x7f080008;
         public static final int buttonreset=0x7f080002;
@@ -39,6 +39,7 @@ public final class R {
         public static final int imageView1=0x7f080003;
         public static final int imageView2=0x7f080005;
         public static final int manuale_zoom=0x7f08000e;
+        public static final int repeatment=0x7f08000f;
         public static final int scrollView1=0x7f080009;
         public static final int set_high=0x7f08000c;
         public static final int set_meter=0x7f08000d;
@@ -56,9 +57,10 @@ public final class R {
         public static final int about_dev=0x7f05002b;
         public static final int action_settings=0x7f050001;
         public static final int active=0x7f050014;
-        public static final int amp=0x7f050039;
+        public static final int amp=0x7f05003a;
         public static final int app_information=0x7f050028;
         public static final int app_name=0x7f050000;
+        public static final int camera=0x7f050036;
         public static final int cancle=0x7f050019;
         public static final int cant_conacc=0x7f050005;
         public static final int cant_conacc_msg=0x7f050006;
@@ -70,7 +72,7 @@ public final class R {
         public static final int captureing=0x7f05001b;
         public static final int cm=0x7f05001e;
         public static final int deactive=0x7f050015;
-        public static final int degree=0x7f050036;
+        public static final int degree=0x7f050037;
         public static final int distance=0x7f05000d;
         public static final int err_sdkver_a=0x7f050026;
         public static final int err_sdkver_b=0x7f050027;
@@ -79,17 +81,19 @@ public final class R {
         public static final int hello_world=0x7f050002;
         public static final int high=0x7f05000f;
         public static final int how_to_use=0x7f050029;
-        public static final int hpa=0x7f050038;
+        public static final int hpa=0x7f050039;
         public static final int inch=0x7f05001f;
         public static final int license=0x7f05002c;
         public static final int m=0x7f05001d;
-        public static final int m_s2=0x7f050037;
+        public static final int m_s2=0x7f050038;
         public static final int manuale_input=0x7f050011;
         public static final int manuale_input_msg=0x7f050012;
         public static final int manuale_zoom=0x7f050023;
         public static final int manuale_zoom_msg=0x7f050024;
         public static final int no=0x7f050018;
         public static final int ok=0x7f050016;
+        public static final int repeatment=0x7f05003b;
+        public static final int repeatment_num=0x7f05003c;
         public static final int reset=0x7f05001a;
         public static final int select=0x7f050010;
         public static final int sensor_Resolution=0x7f050035;

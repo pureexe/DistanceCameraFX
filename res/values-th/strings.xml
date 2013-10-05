@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">กล้องวัดระยะ</string>
+    <string name="app_name">กล้องวัดระยะทาง</string>
     <string name="action_settings">การตั้งค่า</string>
     <string name="hello_world">Hello world!</string>
      <string name="cant_concamera">ไม่สามารถเชื่อมต่อกล้อง</string>
@@ -55,8 +55,11 @@
 	<string name="sensor_power">กำลังไฟ : </string>
 	<string name="sensor_Resolution_raw">ความละเอียด(ดิบ) : </string>
 	<string name="sensor_Resolution">ความละเอียด : </string>
+	<string name="camera">กล้อง</string>
 	<string name="degree">°</string>
 	<string name="m_s2">m/s²</string>
 	<string name="hpa">hPa</string>
 	<string name="amp">a</string>
+	<string name="repeatment">จำนวนครั้งในการอ่านเซนเซอร์</string>
+	<string name="repeatment_num">ค่าน้อยคือเร็วแต่ไม่เสถียร ค่ามากช้าแต่สเถียร</string>
 </resources>

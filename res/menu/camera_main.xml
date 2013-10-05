@@ -16,11 +16,16 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/set_meter"/>
-     <item
+<item
         android:id="@+id/manuale_zoom"
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/manuale_zoom"/>
+<item
+        android:id="@+id/repeatment"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/repeatment"/>
      <item
         android:id="@+id/app_information"
         android:orderInCategory="100"

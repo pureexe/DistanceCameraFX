@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.hardware.Camera;
 import android.hardware.SensorManager;
 import android.os.Build;
+import android.text.Html;
 import android.text.InputType;
 import android.util.Log;
 import android.widget.EditText;
@@ -273,22 +274,24 @@ public class CameraSetting {
 						sensor_pres_information();
 					else
 						Toast.makeText(activity,activity.getString(R.string.err_sdkver_a)+" 2.3 "+activity.getString(R.string.err_sdkver_b),Toast.LENGTH_LONG).show();
-				
+	
+					
 			}
 		}).create().show();		
 	}
+	
 	public void sensor_acc_information() {
 		String sensor_detail = "";
-		sensor_detail+=activity.getString(R.string.sensor_name)+" "+dm.getString("s_acc_name")+"\n"
-					+activity.getString(R.string.sensor_vendor)+" "+dm.getString("s_acc_vendor")+"\n"
-					+activity.getString(R.string.sensor_version)+" "+dm.getString("s_acc_version")+"\n"
-					+activity.getString(R.string.sensor_power)+" "+dm.getString("s_acc_power")+activity.getString(R.string.amp)+"\n"
-					+activity.getString(R.string.sensor_max_range)+" "+dm.getString("s_acc_maxrange")+activity.getString(R.string.m_s2)+"\n"
-					+activity.getString(R.string.sensor_Resolution_raw)+" "+dm.getFloat("s_acc_resolution")+activity.getString(R.string.m_s2)+"\n"
-					+activity.getString(R.string.sensor_Resolution)+" "+Math.toDegrees(Math.asin(dm.getFloat("s_acc_resolution")/9.86))+activity.getString(R.string.degree)+"\n";
+		sensor_detail+=activity.getString(R.string.sensor_name)+"<font color='blue'>"+dm.getString("s_acc_name")+"</font><br>"
+					+activity.getString(R.string.sensor_vendor)+"<font color='blue'>"+dm.getString("s_acc_vendor")+"</font><br>"
+					+activity.getString(R.string.sensor_version)+"<font color='blue'>"+dm.getString("s_acc_version")+"</font><br>"
+					+activity.getString(R.string.sensor_power)+"<font color='blue'>"+dm.getString("s_acc_power")+activity.getString(R.string.amp)+"</font><br>"
+					+activity.getString(R.string.sensor_max_range)+"<font color='blue'>"+dm.getString("s_acc_maxrange")+activity.getString(R.string.m_s2)+"</font><br>"
+					+activity.getString(R.string.sensor_Resolution_raw)+"<font color='blue'>"+dm.getFloat("s_acc_resolution")+activity.getString(R.string.m_s2)+"</font><br>"
+					+activity.getString(R.string.sensor_Resolution)+"<font color='blue'>"+Math.toDegrees(Math.asin(dm.getFloat("s_acc_resolution")/9.86))+activity.getString(R.string.degree)+"</font><br>";
 		new AlertDialog.Builder(activity)
 		.setTitle(activity.getString(R.string.sensor_information))
-		.setMessage(sensor_detail)
+		.setMessage(Html.fromHtml(sensor_detail))
 		.setPositiveButton(activity.getString(R.string.ok),new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton)
 				{
@@ -298,16 +301,16 @@ public class CameraSetting {
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	protected void sensor_pres_information() {
 		String sensor_detail = "";
-		sensor_detail+=activity.getString(R.string.sensor_name)+" "+dm.getString("s_pres_name")+"\n"
-					+activity.getString(R.string.sensor_vendor)+" "+dm.getString("s_pres_vendor")+"\n"
-					+activity.getString(R.string.sensor_version)+" "+dm.getString("s_pres_version")+"\n"
-					+activity.getString(R.string.sensor_power)+" "+dm.getString("s_pres_power")+activity.getString(R.string.amp)+"\n"
-					+activity.getString(R.string.sensor_max_range)+" "+dm.getString("s_pres_maxrange")+activity.getString(R.string.m_s2)+"\n"
-					+activity.getString(R.string.sensor_Resolution_raw)+" "+dm.getFloat("s_pres_resolution")+activity.getString(R.string.m_s2)+"\n"
-					+activity.getString(R.string.sensor_Resolution)+" "+SensorManager.getAltitude(1000+dm.getFloat("s_pres_resolution"),1000)+activity.getString(R.string.m)+"\n";
+		sensor_detail+=activity.getString(R.string.sensor_name)+" <font color='blue'>"+dm.getString("s_pres_name")+"</font><br>"
+					+activity.getString(R.string.sensor_vendor)+" <font color='blue'>"+dm.getString("s_pres_vendor")+"</font><br>"
+					+activity.getString(R.string.sensor_version)+" <font color='blue'>"+dm.getString("s_pres_version")+"</font><br>"
+					+activity.getString(R.string.sensor_power)+" <font color='blue'>"+dm.getString("s_pres_power")+activity.getString(R.string.amp)+"</font><br>"
+					+activity.getString(R.string.sensor_max_range)+" <font color='blue'>"+dm.getString("s_pres_maxrange")+activity.getString(R.string.hpa)+"</font><br>"
+					+activity.getString(R.string.sensor_Resolution_raw)+" <font color='blue'>"+dm.getFloat("s_pres_resolution")+activity.getString(R.string.hpa)+"</font><br>"
+					+activity.getString(R.string.sensor_Resolution)+" <font color='blue'>"+SensorManager.getAltitude(1000+dm.getFloat("s_pres_resolution"),1000)+activity.getString(R.string.m)+"</font><br>\n";
 		new AlertDialog.Builder(activity)
 		.setTitle(activity.getString(R.string.sensor_information))
-		.setMessage(sensor_detail)
+		.setMessage(Html.fromHtml(sensor_detail))
 		.setPositiveButton(activity.getString(R.string.ok),new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton)
 				{
@@ -350,6 +353,30 @@ public class CameraSetting {
     					activity.finish();
     				}
     		}).show();
+	}
+	public void set_repeatment() {
+		// TODO Auto-generated method stub
+		final EditText input = new EditText(activity);
+		input.setInputType(InputType.TYPE_CLASS_NUMBER);
+		input.setText(""+dm.getInt("repeat_snapshot"));
+		new AlertDialog.Builder(activity)
+			.setTitle(activity.getString(R.string.repeatment))
+			.setMessage(activity.getString(R.string.repeatment_num))
+			.setView(input)
+			.setPositiveButton(activity.getString(R.string.ok),new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int choose) {
+					try{
+						int i=Integer.parseInt(input.getText().toString());
+						dm.setInt("repeat_snapshot",i);
+					}
+					catch(Exception e)
+					{
+						Toast.makeText(activity, activity.getString(R.string.fail_is_not_number), Toast.LENGTH_LONG).show();
+					}
+				}
+			}).show();
 	}
 	
 	

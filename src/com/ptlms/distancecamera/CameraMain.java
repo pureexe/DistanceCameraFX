@@ -36,8 +36,8 @@ public class CameraMain extends Activity implements SensorEventListener {
 	private Camera mCamera;
 	private SensorManager sensorManager;
 	private FrameLayout preview;
-	private Vector vex_dist ;
-	private Builder alert;
+	private Vector vex_dist,sensor_acc,sensor_pres;
+	private float sensor_acc_sum,sensor_pres_sum;
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,8 @@ public class CameraMain extends Activity implements SensorEventListener {
         preview = (FrameLayout) findViewById(R.id.camera_preview);
         /** Class init... **/
     	vex_dist= new Vector();
+    	sensor_acc=new Vector();
+    	sensor_pres=new Vector();
 		dm = new DataManager(this);/*** Load DataManager for save data ***/
 		camset=new CameraSetting(this,mCamera);
 		campro=new CameraDistance();
@@ -123,6 +125,9 @@ public class CameraMain extends Activity implements SensorEventListener {
 	       case R.id.set_meter:
 	    	   		camset.set_meter();
 	    	   		return true;
+	       case R.id.repeatment:
+   	   			camset.set_repeatment();
+   	   		return true;
 	       case R.id.manuale_zoom:
 	    	   		camset.manuale_zoom();
 	    	   		return true;
@@ -158,9 +163,32 @@ public class CameraMain extends Activity implements SensorEventListener {
 	public void onSensorChanged(SensorEvent event) {
 		// TODO Auto-generated method stub
 		if(event.sensor.getType()==Sensor.TYPE_ACCELEROMETER)
-			dm.setFloat("Accelometer",event.values[0]);
+			{
+				sensor_acc_sum+=event.values[0];
+				sensor_acc.add(event.values[0]);
+				int repeat = dm.getInt("repeat_snapshot");
+				while(sensor_acc.size()>repeat)
+				{
+					sensor_acc_sum=sensor_acc_sum-Float.parseFloat(""+sensor_acc.elementAt(0));
+					sensor_acc.remove(0);
+				}
+				dm.setFloat("Accelometer",sensor_acc_sum/sensor_acc.size());
+			
+			}
 		if(event.sensor.getType()==Sensor.TYPE_PRESSURE)
-			dm.setFloat("Pressure",event.values[0]);
+			{
+
+				sensor_pres_sum+=event.values[0];
+				sensor_pres.add(event.values[0]);
+				int repeat = dm.getInt("repeat_snapshot");
+				while(sensor_pres.size()>repeat)
+				{
+					sensor_pres_sum=sensor_pres_sum-Float.parseFloat(""+sensor_pres.elementAt(0));
+					sensor_pres.remove(0);
+				}
+				dm.setFloat("Pressure",sensor_pres_sum/sensor_pres.size());
+			//dm.setFloat("Pressure",event.values[0]);
+			}
 		camsnap.refreshUI();
 	}
 

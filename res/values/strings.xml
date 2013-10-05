@@ -55,10 +55,12 @@
 	<string name="sensor_power">Power : </string>
 	<string name="sensor_Resolution_raw">Resolution(RAW) : </string>
 	<string name="sensor_Resolution">Resolution : </string>
+	<string name="camera">Camera</string>
 	<string name="degree">°</string>
 	<string name="m_s2">m/s²</string>
 	<string name="hpa">hPa</string>
 	<string name="amp">a</string>
-		
+	<string name="repeatment">Sensor RepeatTime</string>
+	<string name="repeatment_num">less is fast but unstable,set more to get stable but slow</string>	
 	
 </resources>
