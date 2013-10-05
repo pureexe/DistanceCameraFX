@@ -149,6 +149,8 @@ public class CameraSetting {
 		public void onClick(DialogInterface dialog, int whichButton) {
 				try{
 					params.setZoom(input.getProgress());
+					//params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
+					camera.autoFocus(null);
 					camera.setParameters(params);
 				}
 				catch(Exception e)
