@@ -24,43 +24,50 @@ public final class R {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
-        public static final int reset=0x7f020001;
-        public static final int xdisplay=0x7f020002;
+        public static final int reddot=0x7f020001;
+        public static final int reset=0x7f020002;
+        public static final int xdisplay=0x7f020003;
     }
     public static final class id {
         public static final int Struct=0x7f080000;
         public static final int UIdistance=0x7f080004;
-        public static final int app_information=0x7f080010;
+        public static final int app_information=0x7f080012;
+        public static final int body_getsharedpicture=0x7f080009;
         public static final int buttonContainer=0x7f080006;
         public static final int buttonhigh=0x7f080008;
         public static final int buttonreset=0x7f080002;
         public static final int buttonwide=0x7f080007;
         public static final int camera_preview=0x7f080001;
+        public static final int how_to_use=0x7f080013;
         public static final int imageView1=0x7f080003;
         public static final int imageView2=0x7f080005;
-        public static final int manuale_zoom=0x7f08000e;
-        public static final int repeatment=0x7f08000f;
-        public static final int scrollView1=0x7f080009;
-        public static final int set_high=0x7f08000c;
-        public static final int set_meter=0x7f08000d;
-        public static final int textView1=0x7f08000a;
-        public static final int textView2=0x7f08000b;
+        public static final int manuale_zoom=0x7f080010;
+        public static final int repeatment=0x7f080011;
+        public static final int scrollView1=0x7f08000b;
+        public static final int set_high=0x7f08000e;
+        public static final int set_meter=0x7f08000f;
+        public static final int textView1=0x7f08000c;
+        public static final int textView2=0x7f08000d;
+        public static final int view1=0x7f08000a;
     }
     public static final class layout {
         public static final int activity_camera_main=0x7f030000;
-        public static final int dialog_sensorinfo=0x7f030001;
+        public static final int activity_getsharedpicture=0x7f030001;
+        public static final int dialog_sensorinfo=0x7f030002;
     }
     public static final class menu {
         public static final int camera_main=0x7f070000;
+        public static final int getsharedpicture_main=0x7f070001;
     }
     public static final class string {
-        public static final int about_dev=0x7f05002b;
+        public static final int about_dev=0x7f05002e;
         public static final int action_settings=0x7f050001;
         public static final int active=0x7f050014;
-        public static final int amp=0x7f05003a;
-        public static final int app_information=0x7f050028;
+        public static final int amp=0x7f05003d;
+        public static final int app_information=0x7f05002b;
         public static final int app_name=0x7f050000;
-        public static final int camera=0x7f050036;
+        public static final int calculated_distance=0x7f050045;
+        public static final int camera=0x7f050039;
         public static final int cancle=0x7f050019;
         public static final int cant_conacc=0x7f050005;
         public static final int cant_conacc_msg=0x7f050006;
@@ -72,45 +79,58 @@ public final class R {
         public static final int captureing=0x7f05001b;
         public static final int cm=0x7f05001e;
         public static final int deactive=0x7f050015;
-        public static final int degree=0x7f050037;
+        public static final int define_new_unit=0x7f050022;
+        public static final int degree=0x7f05003a;
         public static final int distance=0x7f05000d;
-        public static final int err_sdkver_a=0x7f050026;
-        public static final int err_sdkver_b=0x7f050027;
-        public static final int fail_is_not_number=0x7f050022;
+        public static final int distance_between_two_point=0x7f050043;
+        public static final int distance_between_two_point_in_unit=0x7f050047;
+        public static final int err_sdkver_a=0x7f050029;
+        public static final int err_sdkver_b=0x7f05002a;
+        public static final int fail_is_not_number=0x7f050025;
+        public static final int failed_type=0x7f050044;
         public static final int feet=0x7f050020;
         public static final int hello_world=0x7f050002;
         public static final int high=0x7f05000f;
-        public static final int how_to_use=0x7f050029;
-        public static final int hpa=0x7f050039;
+        public static final int how_long=0x7f050042;
+        public static final int how_to_use=0x7f05002c;
+        public static final int hpa=0x7f05003c;
         public static final int inch=0x7f05001f;
-        public static final int license=0x7f05002c;
+        public static final int license=0x7f05002f;
         public static final int m=0x7f05001d;
-        public static final int m_s2=0x7f050038;
+        public static final int m_s2=0x7f05003b;
         public static final int manuale_input=0x7f050011;
         public static final int manuale_input_msg=0x7f050012;
-        public static final int manuale_zoom=0x7f050023;
-        public static final int manuale_zoom_msg=0x7f050024;
+        public static final int manuale_zoom=0x7f050026;
+        public static final int manuale_zoom_msg=0x7f050027;
+        /**  activity:sharedpicture string 
+ activity:sharedpicture string 
+         */
+        public static final int name_sharedpicture=0x7f050040;
         public static final int no=0x7f050018;
         public static final int ok=0x7f050016;
-        public static final int repeatment=0x7f05003b;
-        public static final int repeatment_num=0x7f05003c;
+        public static final int repeatment=0x7f05003e;
+        public static final int repeatment_num=0x7f05003f;
         public static final int reset=0x7f05001a;
+        public static final int result_distance_between_two_point=0x7f050046;
         public static final int select=0x7f050010;
-        public static final int sensor_Resolution=0x7f050035;
-        public static final int sensor_Resolution_raw=0x7f050034;
-        public static final int sensor_acc=0x7f05002d;
-        public static final int sensor_information=0x7f05002a;
-        public static final int sensor_max_range=0x7f050031;
-        public static final int sensor_name=0x7f05002f;
-        public static final int sensor_power=0x7f050033;
-        public static final int sensor_pressure=0x7f05002e;
-        public static final int sensor_vendor=0x7f050030;
-        public static final int sensor_version=0x7f050032;
+        public static final int sensor_Resolution=0x7f050038;
+        public static final int sensor_Resolution_raw=0x7f050037;
+        public static final int sensor_acc=0x7f050030;
+        public static final int sensor_information=0x7f05002d;
+        public static final int sensor_max_range=0x7f050034;
+        public static final int sensor_name=0x7f050032;
+        public static final int sensor_power=0x7f050036;
+        public static final int sensor_pressure=0x7f050031;
+        public static final int sensor_vendor=0x7f050033;
+        public static final int sensor_version=0x7f050035;
         public static final int set_about=0x7f05000c;
         public static final int set_high=0x7f05000a;
         public static final int set_meter=0x7f05000b;
         public static final int set_mode=0x7f050009;
-        public static final int unsupport=0x7f050025;
+        public static final int set_picture_failed=0x7f050041;
+        public static final int unit_name=0x7f050023;
+        public static final int unit_size=0x7f050024;
+        public static final int unsupport=0x7f050028;
         public static final int use_pressure=0x7f050013;
         public static final int wide=0x7f05000e;
         public static final int yard=0x7f050021;
@@ -139,6 +159,7 @@ public final class R {
  API 14 theme customizations can go here. 
          */
         public static final int AppBaseTheme=0x7f060000;
+        public static final int AppGetSharedPictureTheme=0x7f060002;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */

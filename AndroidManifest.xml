@@ -4,8 +4,10 @@
     android:versionCode="2"
     android:versionName="2.0.x [Debug Build]" >
 <uses-permission android:name="android.permission.CAMERA" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 <uses-feature android:name="android.hardware.camera" android:required="true" />
-    <uses-sdk
+<uses-permission android:name="android.permission.INTERNET" /> 
+<uses-sdk
         android:minSdkVersion="4"
         android:targetSdkVersion="9" />
 
@@ -24,6 +26,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+         <activity
+            android:theme="@style/AppGetSharedPictureTheme"
+            android:name="com.ptlms.distancecamera.CameraGetSharedPicture"
+            android:label="@string/name_sharedpicture">
+             <intent-filter>
+        		<action android:name="android.intent.action.SEND" />
+        		<category android:name="android.intent.category.DEFAULT" />
+        		<data android:mimeType="image/*" />
+    		</intent-filter>
+    		</activity>
     </application>
 
 </manifest>

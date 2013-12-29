@@ -11,8 +11,15 @@ import android.os.Build;
 import android.text.Html;
 import android.text.InputType;
 import android.util.Log;
+import android.view.View;
+import android.webkit.WebSettings.PluginState;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class CameraSetting {
@@ -203,6 +210,8 @@ public class CameraSetting {
 			return activity.getString(R.string.feet);
 		if(dm.getInt("Unit")==4)
 			return activity.getString(R.string.yard);
+		if(dm.getInt("Unit")==5)
+			return dm.getString("Unit_name");
 		return "Error Unit fault";
 	}
 	public float changeUnit(){
@@ -216,6 +225,8 @@ public class CameraSetting {
 			return (float) 3.2808399; // 1 meter = 3.2808399 feet
 		if(dm.getInt("Unit")==4)
 			return (float) 1.0936133; // 1 meter = 1.0936133
+		if(dm.getInt("Unit")==5)
+			return (float) dm.getFloat("Unit_size");
 		return (float)1.0;
 	}
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
@@ -228,7 +239,7 @@ public class CameraSetting {
 	}
 	public void set_meter() {
 		AlertDialog.Builder	builder = new AlertDialog.Builder(activity);
-		final CharSequence[] items = {activity.getString(R.string.m),activity.getString(R.string.cm),activity.getString(R.string.inch),activity.getString(R.string.feet),activity.getString(R.string.yard)};
+		final CharSequence[] items = {activity.getString(R.string.m),activity.getString(R.string.cm),activity.getString(R.string.inch),activity.getString(R.string.feet),activity.getString(R.string.yard),activity.getString(R.string.define_new_unit)};
 		builder.setTitle(activity.getString(R.string.set_meter));
 		builder.setItems(items, new DialogInterface.OnClickListener() {
 		    public void onClick(DialogInterface dialog, int choose) {
@@ -243,11 +254,48 @@ public class CameraSetting {
 		    			dm.setInt("Unit",3); // set feet
 		    		if(choose==4)
 		    			dm.setInt("Unit",4); // set yard
-	
+		    		if(choose==5)
+		    			manule_setmeter(); // define new unit
 		    }
 		});
 		AlertDialog alert = builder.create();
 		alert.show();
+	}
+	protected void manule_setmeter() {
+		// TODO Auto-generated method stub
+		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle(activity.getString(R.string.define_new_unit));
+        builder.setCancelable(false);
+        LinearLayout lila1= new LinearLayout(activity);
+        lila1.setOrientation(1); //1 is for vertical orientation
+        final EditText input1 = new EditText(activity); 
+        final EditText input2 = new EditText(activity);
+        final TextView txt1 = new TextView(activity);
+        final TextView txt2 = new TextView(activity);
+        txt1.setText(activity.getString(R.string.unit_name));
+        txt2.setText(activity.getString(R.string.unit_size));
+        lila1.addView(txt1);
+        lila1.addView(input1);
+        lila1.addView(txt2);
+        lila1.addView(input2);
+        input2.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_CLASS_TEXT);
+        builder.setView(lila1);
+        builder.setPositiveButton(activity.getString(R.string.ok), new DialogInterface.OnClickListener() {            
+        public void onClick(DialogInterface dialog, int whichButton) {
+        	try{
+        	dm.setString("Unit_name",input1.getText().toString());
+        	dm.setFloat("Unit_size",Float.parseFloat(input2.getText().toString()));
+        	dm.setInt("Unit",5);
+        	}
+        	catch (Exception e){
+        		dm.setInt("Unit",1);
+            	Toast.makeText(activity,activity.getString(R.string.failed_type)+e.getMessage(), Toast.LENGTH_LONG).show();
+
+        	}
+        }
+        });
+        builder.show();
+		
 	}
 	public void app_information() {
 		final CharSequence[] items = {activity.getString(R.string.how_to_use),activity.getString(R.string.sensor_information),activity.getString(R.string.about_dev),activity.getString(R.string.license)};
@@ -260,8 +308,11 @@ public class CameraSetting {
 					sensor_information();
 				if(choice==2)
 					about_dev();
+				if(choice==3)
+					license();
 				
 			}
+
 		}).create().show();
 		}
 	public void sensor_information() {
@@ -320,14 +371,16 @@ public class CameraSetting {
 		}).show();
 		
 	}
+	protected void license() {
+		web_dialog("pureexe.github.io/DistanceCameraFXinfo/license.html");
+	}
+
 	protected void about_dev() {
-		// TODO Auto-generated method stub
-		
+		web_dialog("https://github.com/pureexe");
 	}
 
 	protected void how_to_use() {
-		// TODO Auto-generated method stub
-		
+		web_dialog("pureexe.github.io/DistanceCameraFXinfo/howtouse_mainapp.html");
 	}
 	public void err_concam()
 	{
@@ -381,5 +434,29 @@ public class CameraSetting {
 			}).show();
 	}
 	
-	
+	public void web_dialog(String url){
+		AlertDialog.Builder alert = new AlertDialog.Builder(activity); 
+//		alert.setTitle("WebView");
+		WebView wv = new WebView(activity);
+		wv.getSettings().setJavaScriptEnabled(true);
+		wv.loadUrl(url);
+		wv.setWebViewClient(new WebViewClient() {
+		    @Override
+		    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+		        view.loadUrl(url);
+
+		        return true;
+		    }
+		});
+
+		alert.setView(wv);
+		alert.setNegativeButton(activity.getString(R.string.ok), new DialogInterface.OnClickListener() {
+		    @Override
+		    public void onClick(DialogInterface dialog, int id) {
+		        dialog.dismiss();
+		    }
+		});
+		alert.show();
+		
+	}
 }

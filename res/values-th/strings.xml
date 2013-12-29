@@ -35,6 +35,9 @@
 	<string name="inch">นิ้ว</string>
 	<string name="feet">ฟุต</string>
 	<string name="yard">หลา</string>
+	<string name="define_new_unit">กำหนดหน่วยใหม่</string>
+	<string name="unit_name">ชื่อหน่วย :</string>
+	<string name="unit_size">ขนาดหน่วย (1 เมตร = ? หน่วย):</string>
 	<string name="fail_is_not_number">ขออภัยนั่นไม่ใช่ค่าตัวเลข</string>
 	<string name="manuale_zoom">ขยายภาพ</string>
 	<string name="manuale_zoom_msg">เลื่อนแถบ เพื่อขยายภาพ</string>
@@ -62,4 +65,12 @@
 	<string name="amp">a</string>
 	<string name="repeatment">จำนวนครั้งในการอ่านเซนเซอร์</string>
 	<string name="repeatment_num">ค่าน้อยคือเร็วแต่ไม่เสถียร ค่ามากช้าแต่สเถียร</string>
+	<!-- activity:sharedpicture string -->
+	<string name="name_sharedpicture">หาระยะทางในรูปถ่าย</string>
+	<string name="set_picture_failed">แสดงภาพล้มเหลว ข้อผิดพลาด :</string>
+	<string name="how_long">ห่างเท่าไร?</string>
+	<string name="distance_between_two_point_in_unit">ระยะห่างระหว่างสองจุดในหน่วย</string>
+	<string name="failed_type">พบข้อผิดพลาด : </string>
+		<string name="calculated_distance">ผลคำนวณ</string>
+	<string name="result_distance_between_two_point">ระยะทางระหว่างสองจุดที่ต้องการมีค่า : </string>
 </resources>

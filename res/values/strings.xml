@@ -35,6 +35,9 @@
 	<string name="inch">inch</string>
 	<string name="feet">feet</string>
 	<string name="yard">yard</string>	
+	<string name="define_new_unit">define new</string>
+	<string name="unit_name">Unit name :</string>
+	<string name="unit_size">Unit size (1 meter = ? unit):</string>
 	<string name="fail_is_not_number">input is not a number!</string>
 	<string name="manuale_zoom">Zoom</string>
 	<string name="manuale_zoom_msg">Move Seekbar to zoom</string>
@@ -62,5 +65,12 @@
 	<string name="amp">a</string>
 	<string name="repeatment">Sensor RepeatTime</string>
 	<string name="repeatment_num">less is fast but unstable,set more to get stable but slow</string>	
-	
+	<!-- activity:sharedpicture string -->
+	<string name="name_sharedpicture">find distance from image</string>
+	<string name="set_picture_failed">show picture failed type :</string>
+	<string name="how_long">How Long?</string>
+	<string name="distance_between_two_point">distance between two point in </string>
+	<string name="failed_type">Failed Type : </string>
+	<string name="calculated_distance">Calculated Distance</string>
+	<string name="result_distance_between_two_point">Distance Between two point : </string>
 </resources>
