@@ -372,7 +372,7 @@ public class CameraSetting {
 		
 	}
 	protected void license() {
-		web_dialog("pureexe.github.io/DistanceCameraFXinfo/license.html");
+		web_dialog("http://pureexe.github.io/DistanceCameraFXinfo/license.html");
 	}
 
 	protected void about_dev() {
@@ -380,7 +380,7 @@ public class CameraSetting {
 	}
 
 	protected void how_to_use() {
-		web_dialog("pureexe.github.io/DistanceCameraFXinfo/howtouse_mainapp.html");
+		web_dialog("http://pureexe.github.io/DistanceCameraFXinfo/howtouse_mainapp.html");
 	}
 	public void err_concam()
 	{
