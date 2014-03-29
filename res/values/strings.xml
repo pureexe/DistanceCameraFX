@@ -51,6 +51,7 @@
 	<string name="license">license</string>
 	<string name="sensor_acc">Accelerometer</string>
 	<string name="sensor_pressure">Pressure sensor</string>
+	<string name="sensor_gravity">Gravity sensor</string>
 	<string name="sensor_name">Sensor name : </string>
 	<string name="sensor_vendor">Vendor : </string>
 	<string name="sensor_max_range">Max Range : </string>
@@ -73,4 +74,7 @@
 	<string name="failed_type">Failed Type : </string>
 	<string name="calculated_distance">Calculated Distance</string>
 	<string name="result_distance_between_two_point">Distance Between two point : </string>
+	<string name="select_gravity_source"> Select Gravity source </string>
+	<string name="cant_change_grav">Cannot Change</string>
+	<string name="cant_change_grav_msg">Only have one gravity source on this device</string>
 </resources>

@@ -10,6 +10,8 @@
 	<string name="cant_conacc_msg">ไม่พบชิ้นส่วนอ่านความเร่งบนอุปกรณ์นี้</string>
 	<string name="cant_conpres">ไม่สามารถอ่านค่าความกดอากาศ!</string>
 	<string name="cant_conpres_msg">ไม่พบชิ้นส่วนอ่านความกดอากาศบนอุปกรณ์นี้</string>
+	<string name="cant_change_grav">ไม่สามารถเปลี่ยนได้</string>
+	<string name="cant_change_grav_msg">มีชิ้นส่วนอ่ายความเร่งบนอุปกรณ์นี้เพียงชิ้นเดียว</string>
 	<string name="set_mode">ระบุสิ่งที่จะหา</string>
 	<string name="set_high">กำหนดความสูง</string>
 	<string name="set_meter">กำหนดหน่วยที่ใช้</string>
@@ -48,6 +50,7 @@
 	<string name="how_to_use">วิธีการใช้งาน</string>
 	<string name="sensor_information">ข้อมูลของเซนเซอร์</string>
 	<string name="sensor_acc">เซนเซอร์ความเร่ง</string>
+	<string name="sensor_gravity">เซนเซอร์วัดแรงโน้มถ่วง</string>
 	<string name="sensor_pressure">เซนเซอร์ความดันอากาศ</string>
 	<string name="about_dev">ผู้จัดทำ</string>
 	<string name="license">ใบอนุญาติการใช้งาน</string>
@@ -73,4 +76,5 @@
 	<string name="failed_type">พบข้อผิดพลาด : </string>
 		<string name="calculated_distance">ผลคำนวณ</string>
 	<string name="result_distance_between_two_point">ระยะทางระหว่างสองจุดที่ต้องการมีค่า : </string>
+	<string name="select_gravity_source">แหล่งที่มาแรงโน้มถ่วง </string>
 </resources>

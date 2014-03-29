@@ -7,6 +7,11 @@
         android:title="@string/set_mode"/>
   -->
      <item
+        android:id="@+id/select_gravity_source"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/select_gravity_source"/>
+     <item
         android:id="@+id/set_high"
         android:orderInCategory="100"
         android:showAsAction="never"
@@ -31,18 +36,19 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/app_information"/>
-     <!-- 
+ <!-- 
      <item
         android:id="@+id/show_vexdistance"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="show_vexdistance"/>
+        android:title="แสดงประวัติ"/>
       <item
         android:id="@+id/del_vexdistance"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="del_vexdistance"/>
-         
+        android:title="ล้างประวัติ"/>
+     -->
+        <!--      
      <item
         android:id="@+id/set_about"
         android:orderInCategory="100"

@@ -1,11 +1,16 @@
 package com.ptlms.distancecamera;
 
+import java.util.Vector;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.hardware.Camera;
+import android.hardware.Sensor;
+import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.text.Html;
@@ -30,7 +35,6 @@ public class CameraSetting {
 	private Activity activity;
 	private Float High;
 	private DataManager dm;
-	private boolean usepressure;
 	private Camera camera;
 	public CameraSetting(Activity a,Camera b)
 	{
@@ -91,6 +95,27 @@ public class CameraSetting {
 		    			manuale_high();
 		    		if(choose==1)
 		    				pressure_capture();
+		    }
+
+		});
+		AlertDialog alert = builder.create();
+		alert.show();
+	}
+	public void set_gravity_sorce() {
+		AlertDialog.Builder	builder = new AlertDialog.Builder(activity);
+		String a = "",b = "";
+		if(dm.getBool("UseGravity"))
+				b=" : "+activity.getString(R.string.active);
+		else
+			    a=" : "+activity.getString(R.string.active);
+			final CharSequence[] items = {activity.getString(R.string.sensor_acc)+a,activity.getString(R.string.sensor_gravity)+b};
+		builder.setTitle(activity.getString(R.string.select_gravity_source));
+		builder.setItems(items, new DialogInterface.OnClickListener() {
+		    public void onClick(DialogInterface dialog, int choose) {
+		    		if(choose==0)
+		    			dm.setBool("UseGravity",false);
+		    		if(choose==1)
+		    			dm.setBool("UseGravity",true);
 		    }
 
 		});
@@ -396,6 +421,19 @@ public class CameraSetting {
 					}
 			}).show();
 	}
+	public void debug_list(String a,String b)
+	{
+		
+		new AlertDialog.Builder(activity)
+			.setTitle(a)
+			.setMessage(b)
+			.setCancelable(false)
+			.setPositiveButton(activity.getString(R.string.ok),new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int whichButton)
+					{
+					}
+			}).show();
+	}
 	public void err_conacc()
 	{
     	new AlertDialog.Builder(activity)
@@ -406,6 +444,19 @@ public class CameraSetting {
     			public void onClick(DialogInterface dialog, int whichButton)
     				{
     					activity.finish();
+    				}
+    		}).show();
+	}
+	public void err_congrav()
+	{
+    	new AlertDialog.Builder(activity)
+    		.setTitle(activity.getString(R.string.cant_change_grav))
+    		.setMessage(activity.getString(R.string.cant_change_grav_msg))
+    		.setCancelable(false)
+    		.setPositiveButton(activity.getString(R.string.ok),new DialogInterface.OnClickListener() {
+    			public void onClick(DialogInterface dialog, int whichButton)
+    				{
+    				
     				}
     		}).show();
 	}

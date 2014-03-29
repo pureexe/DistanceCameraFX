@@ -13,7 +13,7 @@ public class CameraDistance {
 		 */
 		return (float) High*((XGravity/DefaultGravity)/FloatMath.sqrt((float) (1-Math.pow((XGravity/DefaultGravity),2))));	
 	}
-	public float getHigh(float distance1,float distance2,float High,float XGravity)
+	public float getHigh(float distance1,float distance2,float High,float ZGravity)
 	{
 		/* Calculate object high use Triangle.
 		   Variable :
@@ -23,17 +23,19 @@ public class CameraDistance {
 		*/
 		
 		// swap distance1,distance2
+		/*
 		if(distance1<distance2)
 		{
 			float swaptmp = distance1;
 			distance1 = distance2;
 			distance2 = swaptmp;
 		}
+		*/
 		// detect device state (angle from ground is less than 90 degree return true if more than return false)
-		if(XGravity>=0)
-			return (float)((distance1-distance2)/distance1)*High; // less than 90 degree
+		if(ZGravity>=0)
+			return (float)(Math.abs(distance1-distance2)/distance2)*High; // less than 90 degree
 		else
-			return (float)((distance1+distance2)/distance1)*High; // more than 90 degree
+			return (float)((distance1+distance2)/distance2)*High; // more than 90 degree
 	}
 	
 	public float getWide(float distance1,float distance2)

@@ -79,6 +79,23 @@ public class CameraMain extends Activity implements SensorEventListener {
 	    	if(Build.VERSION.SDK_INT>=9)
 	    		dm.setString("s_acc_mindelay", ""+s_detail.getMinDelay());
 	    }
+	    if(!sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY),SensorManager.SENSOR_DELAY_NORMAL))
+	    {
+	    	dm.setBool("hasGravity", false);
+	    }
+	    else
+	    {
+	    	dm.setBool("hasGravity", true);
+	    	Sensor s3_detail = sensorManager.getSensorList(Sensor.TYPE_GRAVITY).get(0);
+	    	dm.setString("s_grav_name", s3_detail.getName());
+	    	dm.setString("s_grav_vendor", s3_detail.getVendor());
+	    	dm.setString("s_grav_maxrange",""+s3_detail.getMaximumRange());
+	    	dm.setFloat("s_grav_resolution", s3_detail.getResolution());
+	    	dm.setString("s_grav_version", ""+s3_detail.getVersion());
+	    	dm.setString("s_grav_power",""+s3_detail.getPower());
+	    	if(Build.VERSION.SDK_INT>=9)
+	    		dm.setString("s_grav_mindelay", ""+s3_detail.getMinDelay());
+	    }
 	    if(!sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE),SensorManager.SENSOR_DELAY_NORMAL))
 	    {
 	    	dm.setBool("hasPressure", false);
@@ -119,6 +136,12 @@ public class CameraMain extends Activity implements SensorEventListener {
 	       /*case R.id.set_mode:
 	    	   		camset.selectmode();
 	            return true;*/
+	       case R.id.select_gravity_source:
+	    	   		if(dm.getBool("hasGravity"))
+	    	   			camset.set_gravity_sorce();
+	    	   		else
+	    	   			camset.err_congrav();
+	    	   		return true;
 	       case R.id.set_high:
 	    	   		camset.set_high();
 	    	   		return true;
@@ -131,12 +154,14 @@ public class CameraMain extends Activity implements SensorEventListener {
 	       case R.id.manuale_zoom:
 	    	   		camset.manuale_zoom();
 	    	   		return true;
-	      /* case R.id.show_vexdistance:
-	    	   		util.okDialog("List"," "+vex_dist+"\n");
+	       /*
+	       case R.id.show_vexdistance:
+	    	   		camset.debug_list("List"," "+vex_dist+"\n");
 	    	   		return true;
 	       case R.id.del_vexdistance:
    	   			vex_dist.clear();
-	    	   return true;*/
+	    	   return true;
+	       */
 	       case R.id.app_information:
 	    	   	camset.app_information();
 	       		return true;
@@ -155,15 +180,18 @@ public class CameraMain extends Activity implements SensorEventListener {
 	{
 		Log.d("CFX",">>>> onSnapshot method");
 		camsnap.snapshot();
-		vex_dist.add(new Float(campro.getDistance(camset.gethigh(),dm.getFloat("Accelometer"),(float)9.86)));
+		vex_dist.add(dm.getString("CameraMode")+" = "+dm.getFloat("CameraRTP")+"\n");
+		//vex_dist.add(dm.getString("CameraMode")+"="+dm.getString("CameraReturnPoint"));
+		//vex_dist.add(new Float(campro.getDistance(camset.gethigh(),dm.getFloat("Accelometer"),(float)9.86)));
 		//util.toast("Distance = "+vexdistance.lastElement());	
 		//util.toast(""+campro.getDistance(dm.getFloat("High"),dm.getFloat("Accelometer"),(float)9.86)+" "+unit);
 	}
 	@Override
 	public void onSensorChanged(SensorEvent event) {
 		// TODO Auto-generated method stub
-		if(event.sensor.getType()==Sensor.TYPE_ACCELEROMETER)
+		if(event.sensor.getType()==Sensor.TYPE_ACCELEROMETER&&!dm.getBool("UseGravity"))
 			{
+			    dm.setFloat("ZGravity",event.values[2]);
 				sensor_acc_sum+=event.values[0];
 				sensor_acc.add(event.values[0]);
 				int repeat = dm.getInt("repeat_snapshot");
@@ -173,8 +201,20 @@ public class CameraMain extends Activity implements SensorEventListener {
 					sensor_acc.remove(0);
 				}
 				dm.setFloat("Accelometer",sensor_acc_sum/sensor_acc.size());
-			
 			}
+		if(event.sensor.getType()==Sensor.TYPE_GRAVITY&&dm.getBool("UseGravity"))
+		{
+			dm.setFloat("ZGravity",event.values[2]);
+			sensor_acc_sum+=event.values[0];
+			sensor_acc.add(event.values[0]);
+			int repeat = dm.getInt("repeat_snapshot");
+			while(sensor_acc.size()>repeat)
+			{
+				sensor_acc_sum=sensor_acc_sum-Float.parseFloat(""+sensor_acc.elementAt(0));
+				sensor_acc.remove(0);
+			}
+			dm.setFloat("Accelometer",sensor_acc_sum/sensor_acc.size());
+		}
 		if(event.sensor.getType()==Sensor.TYPE_PRESSURE)
 			{
 
@@ -217,6 +257,7 @@ public class CameraMain extends Activity implements SensorEventListener {
 		super.onResume();
 		sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_NORMAL);
 		sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE),SensorManager.SENSOR_DELAY_NORMAL);
+		sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY),SensorManager.SENSOR_DELAY_NORMAL);
 		// camera will fix soon
 		
 	}

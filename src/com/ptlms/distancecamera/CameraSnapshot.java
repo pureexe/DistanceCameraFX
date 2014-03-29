@@ -38,7 +38,7 @@ public class CameraSnapshot {
 				if(dm.getInt("CameraFind")==1)
 					{
 						distance2=campro.getDistance(camset.gethigh(),dm.getFloat("Accelometer"),(float)9.86);
-						UIdistance.setText(activity.getString(R.string.distance)+" "+distance1+" "+camset.getStringUnit()+"\n"+activity.getString(R.string.high)+" = "+campro.getHigh(distance1, distance2, camset.gethigh(), (float)9.86)+camset.getStringUnit());
+						UIdistance.setText(activity.getString(R.string.distance)+" "+distance1+" "+camset.getStringUnit()+"\n"+activity.getString(R.string.high)+" = "+campro.getHigh(distance1, distance2, camset.gethigh(),dm.getFloat("ZGravity"))+camset.getStringUnit());
 					}
 				if(dm.getInt("CameraFind")==2)
 					{
@@ -57,6 +57,9 @@ public class CameraSnapshot {
 			btnReset.setVisibility(View.VISIBLE);
 			btnLayout.setVisibility(View.VISIBLE);
 			dm.setInt("CameraFind",0);
+			dm.setString("CameraMode","Distance");
+			dm.setFloat("CameraRTP", distance1);
+
 		}
 		if(dm.getInt("State")==1)
 		{
@@ -64,22 +67,30 @@ public class CameraSnapshot {
 			{
 				distance1=campro.getDistance(camset.gethigh(),dm.getFloat("Accelometer"),(float)9.86);
 				Toast.makeText(activity,activity.getString(R.string.distance)+" = "+distance1+camset.getStringUnit(),Toast.LENGTH_LONG).show();
+				dm.setString("CameraMode","Distance");
+				dm.setFloat("CameraRTP", distance1);
 			}
 			if(dm.getInt("CameraFind")==1)
 			{
 				distance2=campro.getDistance(camset.gethigh(),dm.getFloat("Accelometer"),(float)9.86);
 				Toast.makeText(activity,activity.getString(R.string.high)+" = "+campro.getHigh(distance1, distance2, camset.gethigh(), (float)9.86)+camset.getStringUnit(),Toast.LENGTH_LONG).show();
+				dm.setString("CameraMode","High");
+				dm.setFloat("CameraRTP", campro.getHigh(distance1, distance2, camset.gethigh(),dm.getFloat("ZGravity")));
+
 			}
 			if(dm.getInt("CameraFind")==2)
 			{
 				distance2=campro.getDistance(camset.gethigh(),dm.getFloat("Accelometer"),(float)9.86);
 				Toast.makeText(activity,activity.getString(R.string.wide)+" = "+campro.getWide(distance1, distance2)+camset.getStringUnit(),Toast.LENGTH_LONG).show();
+				dm.setString("CameraMode","Wide");
+				dm.setFloat("CameraRTP", campro.getWide(distance1, distance2));
+
 			}
 		}
 	}
 	public void reset() {
 		dm.setInt("State",0);
-		btnReset.setVisibility(View.INVISIBLE);
-		btnLayout.setVisibility(View.INVISIBLE);
+		btnReset.setVisibility(View.GONE);
+		btnLayout.setVisibility(View.GONE);
 	}
 }
