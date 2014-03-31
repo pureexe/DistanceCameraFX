@@ -57,29 +57,7 @@ public class CameraSetting {
 		AlertDialog alert = builder.create();
 		alert.show();
 	}
-	/** First time Dialog is temporaty disable ***
-	public void pressurechoosedialog()
-	{
-		AlertDialog.Builder	builder = new AlertDialog.Builder(activity);
-    	builder.setTitle("Want use pressure?")
-    	.setMessage("Enable Pressure y/n")
-    	.setCancelable(false)
-    	.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface arg0, int arg1) {
-				dm.setBool("UsePressure", true);
-			}
-		})
-		.setNegativeButton("No", new DialogInterface.OnClickListener(){
-			@Override
-			public void onClick(DialogInterface arg0, int arg1) {
-				dm.setBool("UsePressure",false);
-			}
-		})
-    	.show();
-    	dm.setBool("AskForPressure",false);
-    	
-	}*/
+
 	public void set_high() {
 		AlertDialog.Builder	builder = new AlertDialog.Builder(activity);
 		String a = "",b = "";
@@ -101,6 +79,7 @@ public class CameraSetting {
 		AlertDialog alert = builder.create();
 		alert.show();
 	}
+
 	public void set_gravity_sorce() {
 		AlertDialog.Builder	builder = new AlertDialog.Builder(activity);
 		String a = "",b = "";
@@ -112,11 +91,18 @@ public class CameraSetting {
 		builder.setTitle(activity.getString(R.string.select_gravity_source));
 		builder.setItems(items, new DialogInterface.OnClickListener() {
 		    public void onClick(DialogInterface dialog, int choose) {
-		    		if(choose==0)
+		    		if(choose==0){
 		    			dm.setBool("UseGravity",false);
-		    		if(choose==1)
+		    		}
+		    		else if(choose==1){
+		    			if(dm.getBool("hasGravity")==true){
 		    			dm.setBool("UseGravity",true);
-		    }
+		    			}
+		    			else{
+		    				err_congrav();
+		    			}
+		    		}
+		    	}
 
 		});
 		AlertDialog alert = builder.create();
@@ -219,10 +205,7 @@ public class CameraSetting {
 		builder.show();
 		}
 	}
-//	public int getmode()
-//	{
-//		return cam_mode;
-//	}
+
 	public String getStringUnit()
 	{
 		if(dm.getInt("Unit")==0)
@@ -341,7 +324,7 @@ public class CameraSetting {
 		}).create().show();
 		}
 	public void sensor_information() {
-		final CharSequence[] items = {activity.getString(R.string.sensor_acc),activity.getString(R.string.sensor_pressure)};
+		final CharSequence[] items = {activity.getString(R.string.sensor_acc),activity.getString(R.string.sensor_pressure),activity.getString(R.string.sensor_gravity)};
 		new AlertDialog.Builder(activity).setTitle(R.string.app_information).setItems(items, new DialogInterface.OnClickListener(){
 			@Override
 			public void onClick(DialogInterface dialog, int choice) {
@@ -352,7 +335,11 @@ public class CameraSetting {
 						sensor_pres_information();
 					else
 						Toast.makeText(activity,activity.getString(R.string.err_sdkver_a)+" 2.3 "+activity.getString(R.string.err_sdkver_b),Toast.LENGTH_LONG).show();
-	
+				if(choice==2)
+					if(Build.VERSION.SDK_INT>=9)
+						sensor_grav_information();
+					else
+						Toast.makeText(activity,activity.getString(R.string.err_sdkver_a)+" 2.3 "+activity.getString(R.string.err_sdkver_b),Toast.LENGTH_LONG).show();
 					
 			}
 		}).create().show();		
@@ -386,6 +373,26 @@ public class CameraSetting {
 					+activity.getString(R.string.sensor_max_range)+" <font color='blue'>"+dm.getString("s_pres_maxrange")+activity.getString(R.string.hpa)+"</font><br>"
 					+activity.getString(R.string.sensor_Resolution_raw)+" <font color='blue'>"+dm.getFloat("s_pres_resolution")+activity.getString(R.string.hpa)+"</font><br>"
 					+activity.getString(R.string.sensor_Resolution)+" <font color='blue'>"+SensorManager.getAltitude(1000+dm.getFloat("s_pres_resolution"),1000)+activity.getString(R.string.m)+"</font><br>\n";
+		new AlertDialog.Builder(activity)
+		.setTitle(activity.getString(R.string.sensor_information))
+		.setMessage(Html.fromHtml(sensor_detail))
+		.setPositiveButton(activity.getString(R.string.ok),new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton)
+				{
+				}
+		}).show();
+		
+	}
+	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
+	protected void sensor_grav_information() {
+		String sensor_detail = "";
+		sensor_detail+=activity.getString(R.string.sensor_name)+" <font color='blue'>"+dm.getString("s_grav_name")+"</font><br>"
+					+activity.getString(R.string.sensor_vendor)+" <font color='blue'>"+dm.getString("s_grav_vendor")+"</font><br>"
+					+activity.getString(R.string.sensor_version)+" <font color='blue'>"+dm.getString("s_grav_version")+"</font><br>"
+					+activity.getString(R.string.sensor_power)+" <font color='blue'>"+dm.getString("s_grav_power")+activity.getString(R.string.amp)+"</font><br>"
+					+activity.getString(R.string.sensor_max_range)+" <font color='blue'>"+dm.getString("s_grav_maxrange")+activity.getString(R.string.m_s2)+"</font><br>"
+					+activity.getString(R.string.sensor_Resolution_raw)+" <font color='blue'>"+dm.getFloat("s_grav_resolution")+activity.getString(R.string.m_s2)+"</font><br>"
+					+activity.getString(R.string.sensor_Resolution)+" <font color='blue'>"+SensorManager.getAltitude(1000+dm.getFloat("s_grav_resolution"),1000)+activity.getString(R.string.m)+"</font><br>\n";
 		new AlertDialog.Builder(activity)
 		.setTitle(activity.getString(R.string.sensor_information))
 		.setMessage(Html.fromHtml(sensor_detail))
@@ -447,6 +454,7 @@ public class CameraSetting {
     				}
     		}).show();
 	}
+
 	public void err_congrav()
 	{
     	new AlertDialog.Builder(activity)

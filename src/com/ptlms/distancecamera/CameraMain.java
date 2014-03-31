@@ -43,14 +43,7 @@ public class CameraMain extends Activity implements SensorEventListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_camera_main);
-		/** Load Camera **/
-        mCamera = CameraPreview.getCameraInstance();
-        if(mCamera==null)
-        	{
-        		camset.err_concam();
-        	}
-        mPreview = new CameraPreview(this, mCamera);
-        preview = (FrameLayout) findViewById(R.id.camera_preview);
+		preview = (FrameLayout) findViewById(R.id.camera_preview);
         /** Class init... **/
     	vex_dist= new Vector();
     	sensor_acc=new Vector();
@@ -59,7 +52,7 @@ public class CameraMain extends Activity implements SensorEventListener {
 		camset=new CameraSetting(this,mCamera);
 		campro=new CameraDistance();
 		camsnap=new CameraSnapshot(this,camset,campro,dm);
-        preview.addView(mPreview);
+        
         /** Checking Sensor **/
         sensorManager=(SensorManager)getSystemService(SENSOR_SERVICE);
 	    if(!sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_NORMAL))
@@ -178,13 +171,8 @@ public class CameraMain extends Activity implements SensorEventListener {
 	}
 	public void onSnapshot(View v)
 	{
-		Log.d("CFX",">>>> onSnapshot method");
 		camsnap.snapshot();
 		vex_dist.add(dm.getString("CameraMode")+" = "+dm.getFloat("CameraRTP")+"\n");
-		//vex_dist.add(dm.getString("CameraMode")+"="+dm.getString("CameraReturnPoint"));
-		//vex_dist.add(new Float(campro.getDistance(camset.gethigh(),dm.getFloat("Accelometer"),(float)9.86)));
-		//util.toast("Distance = "+vexdistance.lastElement());	
-		//util.toast(""+campro.getDistance(dm.getFloat("High"),dm.getFloat("Accelometer"),(float)9.86)+" "+unit);
 	}
 	@Override
 	public void onSensorChanged(SensorEvent event) {
@@ -237,9 +225,6 @@ public class CameraMain extends Activity implements SensorEventListener {
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		sensorManager.unregisterListener(this);
-		mCamera.stopPreview();
-		mCamera.release();
-        mCamera = null;
 	}
 
 	@Override
@@ -248,7 +233,11 @@ public class CameraMain extends Activity implements SensorEventListener {
 		super.onPause();
 		sensorManager.unregisterListener(this);
 		// camera will fix soon
-	
+		preview.removeAllViews();
+		mCamera.stopPreview();
+		mCamera.release();
+        mCamera = null;
+
 	}
 
 	@Override
@@ -259,6 +248,14 @@ public class CameraMain extends Activity implements SensorEventListener {
 		sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE),SensorManager.SENSOR_DELAY_NORMAL);
 		sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY),SensorManager.SENSOR_DELAY_NORMAL);
 		// camera will fix soon
+		/** Load Camera **/
+        mCamera = CameraPreview.getCameraInstance();
+        if(mCamera==null)
+        	{
+        		camset.err_concam();
+        	}
+        mPreview = new CameraPreview(this, mCamera);
+        preview.addView(mPreview);
 		
 	}
 	/** Button listenner **/
